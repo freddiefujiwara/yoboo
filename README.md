@@ -40,8 +40,38 @@ async function run(){
         await console.log(file);                                                                                               
 }  
 ```
+You can also use other module like [chromeless](https://github.com/graphcool/chromeless):
 
-You can also use other module like [chromy](https://github.com/OnetapInc/chromy):
+```yaml
+installs:                                                                                                                      
+    - chromeless                                                                                                               
+imports:                                                                                                                       
+    - chromeless                                                                                                               
+tasks:                                                                                                                         
+    - function: new chromeless                                                                                                 
+      noawait: true                                                                                                            
+      assignTo: ch                                                                                                             
+    - function: ch.goto                                                                                                        
+      args:                                                                                                                    
+        - http://www.google.com                                                                                                
+    - function: ch.type                                                                                                        
+      args:                                                                                                                    
+        - yoboo                                                                                                                
+        - input[name='q']                                                                                                      
+    - function: ch.press                                                                                                       
+      args:                                                                                                                    
+        - raw: "13"                                                                                                            
+    - function: ch.wait                                                                                                        
+      args:                                                                                                                    
+        - raw: "'#resultStats'"                                                                                                
+    - function: ch.screenshot                                                                                                  
+      assignTo: file                                                                                                           
+    - function: console.log                                                                                                    
+      args:                                                                                                                    
+        - raw: file                                                                                                            
+    - function: ch.end   
+```
+also [chromy](https://github.com/OnetapInc/chromy):
 
 ```yaml
 installs:                                                                                                                      
