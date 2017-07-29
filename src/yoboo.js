@@ -2,7 +2,7 @@ import fs from 'fs';
 import yaml from 'js-yaml';
 import child_process from 'child_process';
 
-export default class Task {
+export default class Yoboo {
     constructor(yamlFile){
         this.yamlFile = yamlFile;
         this.source = '';
@@ -16,21 +16,24 @@ export default class Task {
     }
     install(){
         if(this.parsed.installs){
-            this.parsed.installs.forEach((module) => {
+            for(let i = 0; i < this.parsed.installs.length;i++){
+                let module = this.parsed.installs[i];
                 child_process.execSync("npm i " + module,{stdio:[0,1,2]});
-            });
+            };
         }
     }
     import(){
         if(this.parsed.imports){
-            this.parsed.imports.forEach((module) => {
+            for(let i = 0; i < this.parsed.imports.length;i++){
+                let module = this.parsed.imports[i];
                 this.source += "import " + module + " from '" + module + "';\n";
-            });
+            };
         }
     }
     compile(){
         this.source += "async function run(){\n";
-        this.parsed.tasks.forEach( (command) => {
+        for(let t = 0; t < this.parsed.tasks.length;t++){
+            let command = this.parsed.tasks[t];
             if(command.assignTo){
                 this.source += "\tlet " + command.assignTo + '=';
             }
@@ -40,13 +43,14 @@ export default class Task {
             this.source += command.function + '(';
             if(command.args){
                 let args = [];
-                command.args.forEach((arg) => {
+                for(let a = 0; a < command.args.length;a++){
+                    let arg = command.args[a];
                     args.push((typeof arg) === "object" ? arg.raw : '"'+arg+'"');
-                });
+                };
                 this.source += args.join(",");
             }
             this.source += ");\n";
-        });
+        };
         this.source += "}\nrun();";
     }
     run(){
@@ -55,6 +59,6 @@ export default class Task {
         child_process.execSync(
             [process.argv[0],babelNodePath,this.tmpFile].join(" "),
             {stdio:[0,1,2]});
-        fs.unlinkSync(this.tmpFile+'.js');
+            fs.unlinkSync(this.tmpFile+'.js');
     }
 }

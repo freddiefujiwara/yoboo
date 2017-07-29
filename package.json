@@ -1,6 +1,6 @@
 {
   "name": "yoboo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Yaml based task runner",
   "scripts": {
     "clean": "rimraf lib",
@@ -11,6 +11,9 @@
     "prepublish": "npm run clean && npm run lint && npm run test && npm run build",
     "postinstall": "postinstall-build lib \"npm run prepublish\""
   },
+  "bin": {
+    "yoboo": "index.js"
+  },
   "files": [
     "lib",
     "src"
@@ -20,7 +23,8 @@
     "url": "git+https://github.com/freddiefujiwara/yoboo.git"
   },
   "keywords": [
-    "q-learning",
+    "headless chrome",
+    "task runner",
     "es2015"
   ],
   "author": "Fumikazu Fujiwara <npm@ze.gs> (http://freddiefujiwara.com)",
