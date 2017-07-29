@@ -57,7 +57,7 @@ export default class Yoboo {
         fs.writeFileSync(this.tmpFile +'.js',this.source,'utf-8');
         let babelNodePath = require.resolve('babel-cli/bin/babel-node')
         child_process.execSync(
-            [process.argv[0],babelNodePath,this.tmpFile].join(" "),
+            [process.argv[0],babelNodePath,this.tmpFile,'-b es2015'].join(" "),
             {stdio:[0,1,2]});
             fs.unlinkSync(this.tmpFile+'.js');
     }
