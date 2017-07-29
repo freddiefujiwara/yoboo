@@ -8,4 +8,4 @@ tasks:
       assignTo: file
     - function: console.log
       args: 
-        - val: file
+        - raw: file

@@ -1,0 +1,23 @@
+installs:
+    - chromy
+imports:
+    - chromy
+    - fs
+tasks:
+    - function: new chromy
+      assignTo: ch
+      args: 
+        - raw: "{launchBrowser:false}"
+    - function: ch.emulate
+      args: 
+        - iPhone6
+    - function: ch.goto
+      args: 
+        - http://www.google.com
+    - function: ch.screenshot
+      assignTo: png
+    - function: fs.writeFileSync
+      args: 
+        - chromy.png
+        - raw: png
+    - function: ch.close
