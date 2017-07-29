@@ -1,6 +1,6 @@
 {
   "name": "yoboo",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Yaml based task runner",
   "scripts": {
     "clean": "rimraf lib",
@@ -44,6 +44,7 @@
     "mocha": "^3.4.2",
     "rimraf": "^2.6.1"
   },
+  "main" : "lib/yoboo.js",
   "dependencies": {
     "babel-cli": "^6.24.1",
     "js-yaml": "^3.9.0"
