@@ -1,0 +1,11 @@
+imports:
+    - fs
+tasks:
+    - function: fs.readFileSync
+      args: 
+        - example/cat.yaml
+        - utf-8
+      assignTo: file
+    - function: console.log
+      args: 
+        - val: file
