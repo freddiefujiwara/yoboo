@@ -13,12 +13,13 @@ Yaml based task runner
 ## Installation
 
 ```bash
-npm i yoboo
+npm i babel-preset-es2015 
+npm i -g yoboo
 ```
 
 ## Usage
 ```bash
-./node_modules/.bin/yoboo cat.yaml
+yoboo cat.yaml
 ```
 source code
 ```yaml
