@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/freddiefujiwara/yoboo.svg?branch=master)](https://travis-ci.org/freddiefujiwara/yoboo)
 # yoboo
 Yaml based task runner 
 
