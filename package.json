@@ -11,7 +11,7 @@
         "codecov": "mkdir -p .nyc_output && nyc report --reporter=text-lcov > coverage.lcov && codecov -t 8423f48e-506b-4d39-b449-fa7323b1bbb5",
         "coverage": "mkdir -p .nyc_output && nyc --reporter=lcov --reporter=text npm run test",
         "prepublishOnly": "npm run clean && npm run lint && npm run coverage && npm run codecov && npm run build",
-        "requirements-check": "babel-node check-version.js",
+        "requirements-check": "node check-version.js",
         "postinstall": "npm run requirements-check"
     },
     "bin": {
