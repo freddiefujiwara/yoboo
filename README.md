@@ -13,7 +13,6 @@ Yaml based task runner
 ## Installation
 
 ```bash
-npm i babel-preset-es2015 
 npm i -g yoboo
 ```
 
