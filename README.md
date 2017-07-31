@@ -8,7 +8,7 @@ Yaml based task runner
 
 ## Requirements
 
- - Node 7 or later
+ - Node 7.6 or later
 
 ## Installation
 

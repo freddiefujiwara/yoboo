@@ -2,7 +2,6 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import {execSync} from 'child_process';
-import {transform} from 'babel-core';
 
 /**  
 ** main class of Yaboo(YAML task runner)
@@ -35,7 +34,7 @@ export default class Yoboo {
     if (this.parsed.installs) {
       for (let i = 0; i < this.parsed.installs.length; i += 1) {
         const module = this.parsed.installs[i];
-        execSync(`npm i ${module}`, {stdio: [0, 1, 2]});
+        execSync(`npm i --no-save ${module}`, {stdio: [0, 1, 2]});
       }
     }
   }
@@ -43,10 +42,19 @@ export default class Yoboo {
    * import npm packages
    */
   import() {
+    this.source += `'use strict';\n`;
+    this.source += `Object.defineProperty(exports, "__esModule"`;
+    this.source += `, {value: true});\n`;
+    this.source += `function _interopRequireDefault(obj)`;
+    this.source += ` { return obj && obj.__esModule ? obj :`;
+    this.source += ` { default: obj }; }\n`;
+
     if (this.parsed.imports) {
       for (let i = 0; i < this.parsed.imports.length; i += 1) {
         const module = this.parsed.imports[i];
-        this.source += `import ${module} from '${module}';\n`;
+        this.source += `var ${module} = `;
+        this.source += `_interopRequireDefault(require('${module}'));\n`;
+        this.source += `${module} = ${module}['default'];\n`;
       }
     }
   }
@@ -54,32 +62,37 @@ export default class Yoboo {
    * compile this.yaml to this.source
    */
   compile() {
-    this.source += 'async function run(){\n';
+    const source = [];
+    source.push( 'async function run(){' );
     for (let t = 0; t < this.parsed.tasks.length; t += 1) {
-      const command = this.parsed.tasks[t];
-      if (command.assignTo) {
-        this.source += `\tlet ${command.assignTo}=`;
+      const task = this.parsed.tasks[t];
+      const literal = [];
+      if (task.assignTo) {
+        literal.push( `\tvar ${task.assignTo}=` );
       }
-      if (!command.noawait) {
-        this.source += '\tawait ';
+      if (!task.noawait) {
+        literal.push( '\tawait ' );
       }
-      this.source += `${command.function}(`;
-      if (command.args) {
+      literal.push( `${task.function}(` );
+      if (task.args) {
         const args = [];
-        for (let a = 0; a < command.args.length; a += 1) {
-          const arg = command.args[a];
+        for (let a = 0; a < task.args.length; a += 1) {
+          const arg = task.args[a];
           args.push((typeof arg) === 'object' ? arg.raw : `"${arg}"`);
         }
-        this.source += args.join(',');
+        literal.push( args.join(',') );
       }
-      this.source += ');\n';
+      literal.push( ');' );
+      source.push( literal.join('') );
     }
-    this.source += '}\nrun();';
+    source.push( '}' );
+    source.push( 'run();' );
+    this.source += source.join('\n') + '\n';
   }
   /**
    * run this.source
    */
   run() {
-    eval(transform(this.source, {presets: ['es2015']}).code);
+    eval(this.source);
   }
 }
