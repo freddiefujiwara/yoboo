@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/freddiefujiwara/yoboo.svg?branch=master)](https://travis-ci.org/freddiefujiwara/yoboo)
 [![npm version](https://badge.fury.io/js/yoboo.svg)](https://badge.fury.io/js/yoboo)
+[![codecov](https://codecov.io/gh/freddiefujiwara/yoboo/branch/master/graph/badge.svg)](https://codecov.io/gh/freddiefujiwara/yoboo)
 
 # yoboo
 Yaml based task runner
