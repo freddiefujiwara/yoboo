@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/freddiefujiwara/yoboo.svg?branch=master)](https://travis-ci.org/freddiefujiwara/yoboo)
+[![Build status](https://ci.appveyor.com/api/projects/status/f6wch68buqp93hc7/branch/master?svg=true)](https://ci.appveyor.com/project/freddiefujiwara/yoboo/branch/master)
 [![npm version](https://badge.fury.io/js/yoboo.svg)](https://badge.fury.io/js/yoboo)
 [![codecov](https://codecov.io/gh/freddiefujiwara/yoboo/branch/master/graph/badge.svg)](https://codecov.io/gh/freddiefujiwara/yoboo)
 [![dependencies Status](https://david-dm.org/freddiefujiwara/yoboo/status.svg)](https://david-dm.org/freddiefujiwara/yoboo)
