@@ -1,7 +1,7 @@
+/* eslint no-invalid-this: 0 */
 import chai from 'chai';
+chai.should();
 import fs from 'fs';
-
-const should = chai.should();
 import Yoboo from '../src/yoboo';
 
 describe('Yoboo test.', (suite) => {
@@ -13,7 +13,8 @@ describe('Yoboo test.', (suite) => {
     const yb = new Yoboo('example/cat.yaml');
     yb.should.have.property('load').with.a('function');
     yb.load();
-    yb.should.have.property('yaml').with.equal(fs.readFileSync('example/cat.yaml', 'utf-8'));
+    yb.should.have.property('yaml')
+        .with.equal(fs.readFileSync('example/cat.yaml', 'utf-8'));
   });
   it('should have a function "parse"', () => {
     const yb = new Yoboo('example/cat.yaml');
@@ -39,7 +40,7 @@ describe('Yoboo test.', (suite) => {
     yb.import();
     yb.should.have.property('source');
   });
-  it('should have a function "compile"', function () {
+  it('should have a function "compile"', function() {
     this.timeout(200000);
     let yb = new Yoboo('example/cat.yaml');
     yb.should.have.property('compile').with.a('function');
@@ -48,18 +49,21 @@ describe('Yoboo test.', (suite) => {
     yb.install();
     yb.import();
     yb.compile();
-    yb.should.have.property('source').equal(fs.readFileSync('example/cat.js', 'utf-8'));
+    yb.should.have.property('source')
+        .with.equal(fs.readFileSync('example/cat.js', 'utf-8'));
 
     yb = new Yoboo('example/chromy.yaml');
     yb.load();
-    yb.should.have.property('yaml').with.equal(fs.readFileSync('example/chromy.yaml', 'utf-8'));
+    yb.should.have.property('yaml')
+        .with.equal(fs.readFileSync('example/chromy.yaml', 'utf-8'));
     yb.parse();
     yb.install();
     yb.import();
     yb.compile();
-    yb.should.have.property('source').equal(fs.readFileSync('example/chromy.js', 'utf-8'));
+    yb.should.have.property('source')
+        .with.equal(fs.readFileSync('example/chromy.js', 'utf-8'));
   });
-  it('should have a function "run"', function () {
+  it('should have a function "run"', function() {
     this.timeout(200000);
     const yb = new Yoboo('example/cat.yaml');
     yb.should.have.property('run').with.a('function');
