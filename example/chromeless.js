@@ -1,4 +1,7 @@
-var chromeless = require('chromeless');
+'use strict';
+Object.defineProperty(exports, "__esModule", {value: true});
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var chromeless = _interopRequireDefault(require('chromeless'));
 chromeless = chromeless['default'];
 async function run(){
 	var ch=new chromeless();

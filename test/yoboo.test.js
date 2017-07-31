@@ -52,16 +52,16 @@ describe('Yoboo test.', (suite) => {
     yb.should.have.property('source')
         .with.equal(fs.readFileSync('example/cat.js', 'utf-8'));
 
-    yb = new Yoboo('example/chromy.yaml');
+    yb = new Yoboo('example/chromeless.yaml');
     yb.load();
     yb.should.have.property('yaml')
-        .with.equal(fs.readFileSync('example/chromy.yaml', 'utf-8'));
+        .with.equal(fs.readFileSync('example/chromeless.yaml', 'utf-8'));
     yb.parse();
     yb.install();
     yb.import();
     yb.compile();
     yb.should.have.property('source')
-        .with.equal(fs.readFileSync('example/chromy.js', 'utf-8'));
+        .with.equal(fs.readFileSync('example/chromeless.js', 'utf-8'));
   });
   it('should have a function "run"', function() {
     this.timeout(200000);
