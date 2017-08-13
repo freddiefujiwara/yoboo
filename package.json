@@ -1,6 +1,6 @@
 {
     "name": "yoboo",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Yaml based task runner",
     "scripts": {
         "clean": "rimraf lib",
@@ -10,7 +10,7 @@
         "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
         "codecov": "mkdir -p .nyc_output && nyc report --reporter=text-lcov > coverage.lcov && codecov -t 8423f48e-506b-4d39-b449-fa7323b1bbb5",
         "coverage": "mkdir -p .nyc_output && nyc --reporter=lcov --reporter=text npm run test",
-        "prepublishOnly": "npm run clean && npm run lint && npm run coverage && npm run codecov && npm run build",
+        "prepublishOnly": "npm i && npm run clean && npm run lint && npm run coverage && npm run codecov && npm run build",
         "requirements-check": "node check-version.js",
         "postinstall": "npm run requirements-check"
     },
@@ -19,7 +19,8 @@
     },
     "files": [
         "lib",
-        "index.js"
+        "index.js",
+        "check-version.js"
     ],
     "repository": {
         "type": "git",
